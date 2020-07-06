@@ -126,7 +126,7 @@ Please read: "docker/2018-08-17-sctp-and-docker-18.06-ce.md" on my repo [TIL](ht
 
 ## Add Yaml Files to enable deployment on kubernetes
 
-Once you have successfully set up a [Kubernetes](https://kubernetes.io) cluster on your machines you will be all set to explore k8s descriptors. Several K8s solutions exist which creates a competitive platform revolving around clustering, flexibility, language and any other specification making a kubernetes clustering system tempting to deploy. In the following some of the many existing quick and fast option to test kubernetes clusters are presented, interested readers can go through the following systems are considered: [Kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/), [minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/), [Rancherk3s](https://rancher.com/docs/k3s/latest/en/), [k3d](https://github.com/rancher/k3d) etc.
+Once you have successfully set up a [Kubernetes](https://kubernetes.io) cluster on your machines you will be all set to explore k8s descriptors. Several K8s solutions exist which creates a competitive platform revolving around clustering, flexibility, language and any other specification making a kubernetes clustering system tempting to deploy. In the following some of the many existing quick and fast option to test kubernetes clusters are presented, interested readers can go through the following: [Kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/), [minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/), [Rancherk3s](https://rancher.com/docs/k3s/latest/en/), [k3d](https://github.com/rancher/k3d) etc.
 
 So Far, in the above sections we introduce a experimentation environment which permits us to perform the implementation.We can start working in the direction of adding a Yaml based descriptor file. In particular, the generation of kubernetes deployment description in this section below.
 
@@ -134,7 +134,7 @@ So Far, in the above sections we introduce a experimentation environment which p
 ### Installation
 
 #### Deployment
-The deployment descritor files named `deployment`in our case we are goig to create two different Yaml based descriptors on for Server and another for Client.
+The deployment descritor files named `deployment`in our case we are going to create two different Yaml based descriptors one for Server and another for Client.
 
 `Source https://github.com/sofianinho/iperf3-docker/tree/master/deployment`  
 
@@ -150,15 +150,15 @@ Similarly,
 ##### Client
 Creating a server file via `client-daemonset.yaml`
 
-Eventually, apply the deployment.
+Eventually, apply the deployment using.
 
 ```bash
 kubectl apply -f client-daemonset.yaml
 ```
 ##### Services
-Creating a service file defined in i.e clusterIP, NodePort, LoadBalancer `services`
+Creating a service file defined in `services` i.e clusterIP, NodePort, LoadBalancer 
 
-Apply the deployment.
+Apply the service Yaml.
 
 ```bash
 kubectl apply -f iperf3-clusterip.yaml
@@ -171,7 +171,5 @@ deployment.apps/iperf3-server-deployment created
 daemonset.apps/iperf3-clients created
 service/iperf3-tcp created
 ```
-
-
-
+Note: we have multiple service descriptor whilst type =LoadBalancer in order to support mix protocols(TCP,UDP and SCTP)  with some possibility on metallb. Also in order to do so we need to create two seperate services one for TCP and other for UDP (or any desired protocols) with required annotation of metallb.
 
