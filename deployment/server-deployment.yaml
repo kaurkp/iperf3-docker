@@ -8,7 +8,7 @@ metadata:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: iperf3-server-deployment
+  name: iperf3-server
   labels:
     app: iperf3
   namespace: iperf3-system
