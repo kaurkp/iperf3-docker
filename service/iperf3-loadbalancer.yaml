@@ -4,9 +4,12 @@ metadata:
   labels:
     app: iperf3
   name: my-iperf3
+   annotations:
+    metallb.universe.tf/allow-shared-ip: "true"
   namespace: iperf3-server
 spec:
   type: LoadBalancer
+  loadBalancerIP: 196.168.99.241
   externalTrafficPolicy: Local
   ports:
   - name: udp-port
