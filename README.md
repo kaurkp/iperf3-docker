@@ -122,3 +122,56 @@ docker run -t --rm --link iperf-server sofianinho/iperf3:3.6-ubuntu18.04 -c  ipe
 
 ### Notes on sctp support with docker
 Please read: "docker/2018-08-17-sctp-and-docker-18.06-ce.md" on my repo [TIL](https://github.com/sofianinho/TIL)
+
+
+## Add Yaml Files to enable deployment on kubernetes
+
+Once you have successfully set up a [Kubernetes](https://kubernetes.io) cluster on your machines you will be all set to explore k8s descriptors. Several K8s solutions exist which creates a competitive platform revolving around clustering, flexibility, language and any other specification making a kubernetes clustering system tempting to deploy. In the following some of the many existing quick and fast option to test kubernetes clusters are presented, interested readers can go through the following systems are considered: [Kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/), [minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/), [Rancherk3s](https://rancher.com/docs/k3s/latest/en/), [k3d](https://github.com/rancher/k3d) etc.
+
+So Far, in the above sections we introduce a experimentation environment which permits us to perform the implementation.We can start working in the direction of adding a Yaml based descriptor file. In particular, the generation of kubernetes deployment description in this section below.
+
+
+### Installation
+
+#### Deployment
+The deployment descritor files named `deployment`in our case we are goig to create two different Yaml based descriptors on for Server and another for Client.
+
+`Source https://github.com/sofianinho/iperf3-docker/tree/master/deployment`  
+
+##### Server
+Creating a server file via `server-deployment.yaml`
+
+Finally, apply the deployments.
+
+```bash
+kubectl apply -f server-deployment.yaml
+```
+Similarly, 
+##### Client
+Creating a server file via `client-daemonset.yaml`
+
+Eventually, apply the deployment.
+
+```bash
+kubectl apply -f client-daemonset.yaml
+```
+##### Services
+Creating a service file defined in i.e clusterIP, NodePort, LoadBalancer `services`
+
+Apply the deployment.
+
+```bash
+kubectl apply -f iperf3-clusterip.yaml
+```
+
+### Sample output
+         
+```bash
+deployment.apps/iperf3-server-deployment created
+daemonset.apps/iperf3-clients created
+service/iperf3-tcp created
+```
+
+
+
+
