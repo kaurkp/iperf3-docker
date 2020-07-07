@@ -3,23 +3,23 @@ kind: Namespace
 metadata:
   name: iperf3-system
   labels: 
-    app: iperf3-client
+    app: iperf3
 ---
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: iperf3-daemonset
   labels:
-    app: iperf3-client
+    app: iperf3
   namespace: iperf3-system
 spec:
   selector:
     matchLabels:
-      app: iperf3-client
+      app: iperf3
   template:
     metadata:
       labels:
-        app: iperf3-client
+        app: iperf3
     spec:
       containers:
       - name: iperf3-client
