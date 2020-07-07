@@ -171,5 +171,5 @@ deployment.apps/iperf3-server-deployment created
 daemonset.apps/iperf3-clients created
 service/iperf3-tcp created
 ```
-Note: we have multiple service descriptor whilst type =LoadBalancer in order to support mix protocols(TCP,UDP and SCTP)  with some possibility on metallb. Also in order to do so we need to create two seperate services one for TCP and other for UDP (or any desired protocols) with required annotation of metallb.
+Note: we have multiple service descriptor whilst type =LoadBalancer in order to support mix protocols(TCP,UDP and SCTP)  with some possibility on [metallb](https://metallb.universe.tf/usage/#ip-address-sharing). Also in order to do so we need to create two seperate services one for TCP and other for UDP (or any desired protocols) with required annotation of metallb.
 
